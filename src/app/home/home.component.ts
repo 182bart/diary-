@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { record } from '../record';
 import { ServiceService } from '../service.service';
 
 @Component({
@@ -16,11 +15,14 @@ export class HomeComponent implements OnInit {
     this.getRecords();
   }
 
+  // get all records form server
   getRecords() {
     this.service
       .getAllRecords()
       .subscribe((records) => (this.records = records));
   }
+
+  // remove recorm from server
   deteteRecord(record) {
     this.service.deleteRecord(record).subscribe(() => {
       this.getRecords();

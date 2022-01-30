@@ -14,9 +14,9 @@ export class AddRecordComponent implements OnInit {
   editRecord: FormGroup;
   recordId;
   valid = false;
+  record;
+  saved =false;
 
-  // selectedGrade: number;
-  rekord;
   constructor(
     public formBuilder: FormBuilder,
     public service: ServiceService,
@@ -24,40 +24,50 @@ export class AddRecordComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // make empty form for new Record 
     this.newRecord = this.formBuilder.group({
       name: ['', Validators.required],
       surname: ['', Validators.required],
       class: ['', Validators.required],
       grade: ['', Validators.required],
     });
+
+    // get ID chosen Record
     this.recordId = this.activatedRoute.snapshot.params.id;
 
+    // get chosen Record from server and add values to form
     this.service.getRecord(this.recordId).subscribe((record) => {
-      this.rekord = record;
+      this.record = record;
       this.editRecord = this.formBuilder.group({
-        name: [this.rekord.name, Validators.required],
-        surname: [this.rekord.surname, Validators.required],
+        name: [this.record.name, Validators.required],
+        surname: [this.record.surname, Validators.required],
         class: ['', Validators.required],
         grade: ['', Validators.required],
       });
-      this.editRecord.controls['class'].setValue(this.rekord.class);
-      this.editRecord.controls['grade'].setValue(this.rekord.grade);
+      this.editRecord.controls['class'].setValue(this.record.class);
+      this.editRecord.controls['grade'].setValue(this.record.grade);
     });
   }
+
+  //  save new record in server
   add() {
     if (this.newRecord.valid) {
       this.valid = true;
       const formValue = this.newRecord.getRawValue();
-      this.service.saveRecord(formValue).subscribe();
+      this.service.saveRecord(formValue)
+      .subscribe(()=>this.saved=true);
     } else {
       this.valid = true;
     }
   }
+
+  //  save edited record in server
   edit() {
     if (this.editRecord.valid) {
       this.valid = true;
       const formValue = this.editRecord.getRawValue();
-      this.service.editRecord(formValue, this.rekord.id).subscribe();
+      this.service.editRecord(formValue, this.record.id)
+      .subscribe(()=>this.saved=true);
     } else {
       this.valid = true;
     }

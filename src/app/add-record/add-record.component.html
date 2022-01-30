@@ -1,37 +1,31 @@
 <!-- Add New Record -->
-
 <form *ngIf="!recordId" [formGroup]="newRecord">
   <p class="fs-2 fw-bold">Dodaj Wpis</p>
+
   <!-- name -->
-  <label class="mt-4 fw-bold d-block"
-    >Imię
+  <label class="mt-4 fw-bold d-block">Imię
     <input
       class="d-block bg-secondary bg-opacity-50 rounded-3 fs-5 border border-secondary mt-1 ps-2"
       type="text"
-      formControlName="name"
-    />
+      formControlName="name"/>
+
     <!-- Validator name -->
-    <p
-      class="fs-6 text-danger"
-      *ngIf="valid && newRecord.get('name').errors?.['required']"
-    >
+    <p class="fs-6 text-danger"
+      *ngIf="valid && newRecord.get('name').errors?.['required']">
       Imię jest wymagane!
     </p>
   </label>
 
   <!-- Surname -->
-  <label class="fw-bold mt-4"
-    >Nazwisko
+  <label class="fw-bold mt-4">Nazwisko
     <input
       class="d-block bg-secondary bg-opacity-50 rounded-3 fs-5 border border-secondary mt-1 ps-2"
       type="text"
-      formControlName="surname"
-    />
+      formControlName="surname"/>
+
     <!-- Validator surname -->
-    <p
-      class="fs-6 text-danger"
-      *ngIf="valid && newRecord.get('surname').errors?.['required']"
-    >
+    <p class="fs-6 text-danger"
+      *ngIf="valid && newRecord.get('surname').errors?.['required']">
       Nazwisko jest wymagane!
     </p>
   </label>
@@ -40,41 +34,36 @@
   <span class="d-block fw-bold mt-4">Wybierz Klasę</span>
   <select
     formControlName="class"
-    class="d-block bg-secondary bg-opacity-50 rounded-3 fs-5 border border-secondary px-5 cursor-pointer"
-  >
+    class="d-block bg-secondary bg-opacity-50 rounded-3 fs-5 border border-secondary px-5 cursor-pointer">
     <option></option>
     <option *ngFor="let class of allClass">
       {{ class }}
     </option>
   </select>
+
   <!-- Validator Class -->
-  <p
-    class="fs-6 text-danger fw-bold"
-    *ngIf="valid && newRecord.get('class').errors?.['required']"
-  >
+  <p class="fs-6 text-danger fw-bold"
+    *ngIf="valid && newRecord.get('class').errors?.['required']">
     Klasa jest wymagana!
   </p>
 
   <!-- Grade -->
   <span class="d-block fw-bold mt-4 mb-1">Wybierz Ocenę</span>
   <div
-    class="d-inline bg-secondary bg-opacity-50 rounded-3 fs-5 border border-secondary px-2 py-1"
-  >
+    class="d-inline bg-secondary bg-opacity-50 rounded-3 fs-5 border border-secondary px-2 py-1">
     <label class="fs-5 me-3" *ngFor="let item of [1, 2, 3, 4, 5, 6]">
       <input
         class="mt-1 cursor-pointer"
         formControlName="grade"
         type="radio"
-        [value]="item"
-      />
+        [value]="item"/>
       {{ item }}
     </label>
   </div>
+
   <!-- Validator class -->
-  <p
-    class="fs-6 text-danger fw-bold"
-    *ngIf="valid && newRecord.get('grade').errors?.['required']"
-  >
+  <p class="fs-6 text-danger fw-bold"
+    *ngIf="valid && newRecord.get('grade').errors?.['required']">
     Ocena jest wymagana!
   </p>
 
@@ -82,20 +71,20 @@
   <button class="d-block btn btn-dark m-t-4 ms-auto" (click)="add()">
     Zapisz Rekord
   </button>
+  <p *ngIf="saved"
+  class="text-end text-success d-block ms-auto fw-bold fs-5 mt-4">Rekord Zapisano</p>
 </form>
 
 <!-- Edit Record -->
-
-<form *ngIf="rekord" [formGroup]="editRecord">
+<form *ngIf="record" [formGroup]="editRecord">
   <p class="fs-2 fw-bold">Edytuj Wpis</p>
+
   <!-- name -->
-  <label class="mt-4 fw-bold d-block"
-    >Imię
+  <label class="mt-4 fw-bold d-block">Imię
     <input
       class="d-block bg-secondary bg-opacity-50 rounded-3 fs-5 border border-secondary mt-1 mb-4 ps-2"
       type="text"
-      formControlName="name"
-    />
+      formControlName="name"/>
   </label>
 
   <!-- Surname -->
@@ -104,16 +93,14 @@
     <input
       class="d-block bg-secondary bg-opacity-50 rounded-3 fs-5 border border-secondary mt-1 ps-2"
       type="text"
-      formControlName="surname"
-    />
+      formControlName="surname"/>
   </label>
 
   <!-- Class -->
   <span class="d-block fw-bold mt-4">Wybierz Klasę</span>
   <select
     formControlName="class"
-    class="d-block bg-secondary bg-opacity-50 rounded-3 fs-5 border border-secondary px-5 mb-4 cursor-pointer"
-  >
+    class="d-block bg-secondary bg-opacity-50 rounded-3 fs-5 border border-secondary px-5 mb-4 cursor-pointer">
     <option *ngFor="let class of allClass" [value]="class">
       {{ class }}
     </option>
@@ -122,18 +109,14 @@
   <!-- Grade -->
   <span class="d-block fw-bold mt-3 mb-1">Wybierz Ocenę</span>
   <div
-    class="d-inline bg-secondary bg-opacity-50 rounded-3 fs-5 border border-secondary px-2 py-1"
-  >
-    <label
-      class="mb-4 fs-5 cursor-pointer mx-3"
-      *ngFor="let item of [1, 2, 3, 4, 5, 6]"
-    >
+    class="d-inline bg-secondary bg-opacity-50 rounded-3 fs-5 border border-secondary px-2 py-1">
+    <label class="mb-4 fs-5 cursor-pointer mx-3"
+      *ngFor="let item of [1, 2, 3, 4, 5, 6]">
       <input
         class="mt-1 cursor-pointer"
         formControlName="grade"
         type="radio"
-        [value]="item"
-      />
+        [value]="item"/>
       {{ item }}
     </label>
   </div>
@@ -142,4 +125,6 @@
   <button class="d-block btn btn-dark m-t-4 ms-auto" (click)="edit()">
     Zapisz Rekord
   </button>
+  <p *ngIf="saved"
+    class="text-end text-success d-block ms-auto fw-bold fs-5 mt-4">Rekord Zapisano</p>
 </form>
