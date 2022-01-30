@@ -1,0 +1,31 @@
+<div>
+  <p class="fs-2 fw-bold">Lista wpisów</p>
+  <div class="d-flex">
+    <span class="nameFiled ms-2 fw-bold">Imie i Nazwisko</span>
+    <span class="classField text-center fw-bold"> Klasa</span>
+    <span class="classField text-center fw-bold"> Ocena</span>
+  </div>
+  <div
+    class="fs-5 border border-secondary my-4 ps-2 bg-secondary bg-opacity-50 rounded-3 d-flex"
+    *ngFor="let record of records"
+  >
+    <div class="border-end border-secondary pe-2 nameFiled">
+      <span>{{ record.name }}</span>
+      <span class="ps-2">{{ record.surname }}</span>
+    </div>
+    <span class="border-end border-secondary px-2 classField text-center">{{
+      record.class
+    }}</span>
+    <span class="border-end border-secondary px-3 classField text-center">{{
+      record.grade
+    }}</span>
+    <div class="ms-auto">
+      <button class="btn btn-dark" routerLink="/edit/{{ record.id }}">
+        Edytuj Wpis
+      </button>
+      <button class="btn btn-dark ms-3" (click)="deteteRecord(record)">
+        Usuń Wpis
+      </button>
+    </div>
+  </div>
+</div>

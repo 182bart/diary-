@@ -1,1 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
+html {
+  background: no-repeat center center fixed
+    url("./assets/images/pexels-jessica-lewis-creative-606541.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+body {
+  background: transparent;
+}

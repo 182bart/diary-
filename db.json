@@ -1,0 +1,53 @@
+{
+  "records": [
+    {
+      "name": "add",
+      "surname": "Kaczmarczyk",
+      "class": "5a",
+      "grade": 5,
+      "id": 1
+    },
+    {
+      "id": 2,
+      "name": "Mieszko",
+      "surname": "Szymański",
+      "class": "5a",
+      "grade": 3
+    },
+    {
+      "id": 3,
+      "name": "Remigiusz",
+      "surname": "Zawadzki",
+      "class": "5a",
+      "grade": 2
+    },
+    {
+      "id": 4,
+      "name": "Elżbieta",
+      "surname": "Kozłowska",
+      "class": "4b",
+      "grade": 4
+    },
+    {
+      "id": 5,
+      "name": "Edyta",
+      "surname": "Zielińska",
+      "class": "4b",
+      "grade": 6
+    },
+    {
+      "id": 6,
+      "name": "Kazimierz",
+      "surname": "Kozłowski",
+      "class": "4b",
+      "grade": 4
+    },
+    {
+      "id": 7,
+      "name": "Grzegorz",
+      "surname": "Jaworski",
+      "class": "5a",
+      "grade": 3
+    }
+  ]
+}
